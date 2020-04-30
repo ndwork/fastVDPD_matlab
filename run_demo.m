@@ -1,8 +1,8 @@
 
 function run_demo
     gamma = 150;       % Increase this to increase the number of points
-    accelerateX = 2;   % Increase this to reduce the points in the x direction
-    accelerateY = 1;   % Increase this to reduce the points in the y direction
+    accelerateX = 1;   % Increase this to reduce the points in the x direction
+    accelerateY = 2;   % Increase this to reduce the points in the y direction
 
     addpath( 'dworkLib' );
 
@@ -15,6 +15,7 @@ function run_demo
                [ -0.5, 0.5 ] / accelerateY; ];  % horizontal bounds
     ks = poissonDisc2( r, 'min_r', min_r, 'bounds', bounds );
     ks(:,1) = ks(:,1) * accelerateX;
+    ks(:,2) = ks(:,2) * accelerateY;
     dks = 1 ./ (Ns-1);
     [~,samples] = movePointsToGrid( ks', [-0.5, -0.5], 0.5-dks, Ns );
     sampleMask = samples > 0;
